@@ -1,0 +1,53 @@
+name: Python
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  flake8:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python-version: [3.12]
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Set up Python
+        uses: actions/setup-python@v4.1.0
+        with:
+          python-version: ${{ matrix.python-version }}
+
+      - name: Install flake8
+        run: pip --disable-pip-version-check install flake8
+
+      - name: Lint with flake8
+        run: flake8 --count
+
+      - name: Install black
+        run: pip install black
+
+      - name: Run black
+        run: black --check .
+
+      - name: Install MyPy
+        run: pip install mypy
+
+      - name: Run MyPy
+        run: mypy --explicit-package-bases .
+
+      - name: Install isort
+        run: pip install isort
+
+      - name: Run isort
+        run: isort .
+
+      - name: Install Pytest
+        run: pip install pytest
+
+      - name: Run Pytest
+        run: pytest -v .
