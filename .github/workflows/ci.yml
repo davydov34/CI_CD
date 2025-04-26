@@ -29,16 +29,16 @@ jobs:
         run: poetry install --no-interaction
 
       - name: Lint with flake8
-        run: flake8 --count
+        run: poetry run flake8 --count
 
       - name: Run black
-        run: black --check .
+        run: poetry run black --check .
 
       - name: Run MyPy
-        run: mypy --explicit-package-bases .
+        run: poetry run mypy --explicit-package-bases .
 
       - name: Run isort
-        run: isort .
+        run: poetry run isort .
 
       - name: Run Pytest
-        run: pytest -v .
+        run: poetry run pytest -v .
