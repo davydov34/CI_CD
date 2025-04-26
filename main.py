@@ -5,4 +5,4 @@ if __name__ == "__main__":
     two = sub(10, 5)
     three = add(199, 1)
     four = sub(200, 1)
-    print(f'Res: \n{one}\n{two}\n{three}\n{four}')
+    print(f"Res: \n{one}\n{two}\n{three}\n{four}")
